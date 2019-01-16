@@ -7,29 +7,30 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import tpVol.model.Passager;
+import tpVol.model.Ville;
 import tpVol.model.Vol;
 import tpVol.util.Context;
 
-public class DaoVolJpaImpl implements DaoVol {
+public class DaoVilleJpaImpl implements DaoVille  {
 
-	public List<Vol> findAll() {
-		List<Vol> vols = null;
+	public List<Ville> findAll() {
+		List<Ville> villes = null;
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Query query = em.createQuery("select v from Vol v"); //"from Personne p" fonctionne aussi
-		vols=query.getResultList();
+		Query query = em.createQuery("select v from Ville v"); //"from Personne p" fonctionne aussi
+		villes=query.getResultList();
 		em.close();
-		return vols;
+		return villes;
 	}
 
-	public Vol findByKey(Integer key) {
+	public Ville findByKey(Integer key) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Vol v = null;
-		v = em.find(Vol.class, key);
+		Ville v = null;
+		v = em.find(Ville.class, key);
 		em.close();
 		return v;
 	}
 
-	public void insert(Vol obj) {
+	public void insert(Ville obj) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
 		try {
@@ -43,12 +44,13 @@ public class DaoVolJpaImpl implements DaoVol {
 			}
 		}
 		em.close();
+
 	}
 
-	public Vol update(Vol obj) {
+	public Ville update(Ville obj) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
-		Vol v=null;
+		Ville v=null;
 		try {
 			tx = em.getTransaction();
 			tx.begin();
@@ -63,7 +65,7 @@ public class DaoVolJpaImpl implements DaoVol {
 		return v;
 	}
 
-	public void delete(Vol objet) {
+	public void delete(Ville objet) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
 		try {
@@ -77,7 +79,7 @@ public class DaoVolJpaImpl implements DaoVol {
 			}
 		}
 		em.close();
-		
+
 	}
 
 	public void deleteByKey(Integer key) {
@@ -86,7 +88,7 @@ public class DaoVolJpaImpl implements DaoVol {
 		try {
 			tx = em.getTransaction();
 			tx.begin();
-			em.remove(em.find(Vol.class, key));
+			em.remove(em.find(Ville.class, key));
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null && tx.isActive()) {
@@ -95,5 +97,6 @@ public class DaoVolJpaImpl implements DaoVol {
 		}
 		em.close();
 	}
-
 }
+
+

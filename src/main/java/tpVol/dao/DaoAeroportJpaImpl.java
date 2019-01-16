@@ -6,30 +6,31 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import tpVol.model.Aeroport;
 import tpVol.model.Passager;
 import tpVol.model.Vol;
 import tpVol.util.Context;
 
-public class DaoVolJpaImpl implements DaoVol {
+public class DaoAeroportJpaImpl implements DaoAeroport{
 
-	public List<Vol> findAll() {
-		List<Vol> vols = null;
+	public List<Aeroport> findAll() {
+		List<Aeroport> aeroports = null;
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Query query = em.createQuery("select v from Vol v"); //"from Personne p" fonctionne aussi
-		vols=query.getResultList();
+		Query query = em.createQuery("select a from Aeroport a"); //"from Personne p" fonctionne aussi
+		aeroports=query.getResultList();
 		em.close();
-		return vols;
+		return aeroports;
 	}
 
-	public Vol findByKey(Integer key) {
+	public Aeroport findByKey(Integer key) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Vol v = null;
-		v = em.find(Vol.class, key);
+		Aeroport a = null;
+		a = em.find(Aeroport.class, key);
 		em.close();
-		return v;
+		return a;
 	}
 
-	public void insert(Vol obj) {
+	public void insert(Aeroport obj) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
 		try {
@@ -43,16 +44,17 @@ public class DaoVolJpaImpl implements DaoVol {
 			}
 		}
 		em.close();
+
 	}
 
-	public Vol update(Vol obj) {
+	public Aeroport update(Aeroport obj) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
-		Vol v=null;
+		Aeroport a=null;
 		try {
 			tx = em.getTransaction();
 			tx.begin();
-			v=em.merge(obj);
+			a=em.merge(obj);
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null && tx.isActive()) {
@@ -60,10 +62,10 @@ public class DaoVolJpaImpl implements DaoVol {
 			}
 		}
 		em.close();
-		return v;
+		return a;
 	}
 
-	public void delete(Vol objet) {
+	public void delete(Aeroport objet) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
 		try {
@@ -77,7 +79,7 @@ public class DaoVolJpaImpl implements DaoVol {
 			}
 		}
 		em.close();
-		
+
 	}
 
 	public void deleteByKey(Integer key) {
@@ -86,7 +88,7 @@ public class DaoVolJpaImpl implements DaoVol {
 		try {
 			tx = em.getTransaction();
 			tx.begin();
-			em.remove(em.find(Vol.class, key));
+			em.remove(em.find(Aeroport.class, key));
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null && tx.isActive()) {
@@ -97,3 +99,5 @@ public class DaoVolJpaImpl implements DaoVol {
 	}
 
 }
+
+
