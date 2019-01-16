@@ -15,7 +15,7 @@ import tpVol.model.Reservation;
 import tpVol.model.Vol;
 import tpVol.util.Context;
 
-public class AppTest {
+public class AppClem {
 
 	public static void main(String[] args) {
 		
