@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import tpVol.model.CompagnieAerienne;
 import tpVol.model.Escale;
 import tpVol.util.Context;
 
