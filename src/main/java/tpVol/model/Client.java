@@ -11,8 +11,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import objets.Article;
-
 @Entity
 @Table(name = "client")
 @SequenceGenerator(name = "seqClient", sequenceName = "seq_client", allocationSize = 1, initialValue = 1)
