@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="reservation")
 @SequenceGenerator(name = "seqReservation", sequenceName = "seq_reservation", allocationSize = 1, initialValue = 1)
@@ -27,7 +28,7 @@ public class Reservation {
 	
 	@ManyToOne
 	@JoinColumn(name="id_passager")
-	private Long id_passager;
+	private Passager passager;
 	
 	public Reservation() {
 	}

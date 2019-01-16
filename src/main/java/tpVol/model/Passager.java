@@ -1,13 +1,17 @@
 package tpVol.model;
 
+import java.util.Set;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -33,8 +37,8 @@ public class Passager {
 		@AttributeOverride(name="ville",column=@Column(name="city",length=150))
 	})
 	private Adresse adresse;
-//	@OneToMany(mappedBy="passager",fetch=FetchType.LAZY)
-//	private Set<Reservation> reservations;
+	@OneToMany(mappedBy="passager",fetch=FetchType.LAZY)
+	private Set<Reservation> reservations;
 	
 	
 	@Version
