@@ -22,7 +22,7 @@ public class DaoVilleJpaImpl implements DaoVille  {
 		return villes;
 	}
 
-	public Ville findByKey(Integer key) {
+	public Ville findByKey(Long key) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		Ville v = null;
 		v = em.find(Ville.class, key);
@@ -82,7 +82,7 @@ public class DaoVilleJpaImpl implements DaoVille  {
 
 	}
 
-	public void deleteByKey(Integer key) {
+	public void deleteByKey(Long key) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
 		try {
