@@ -106,6 +106,15 @@ public abstract class Client {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
+	
+
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
+	}
 
 	@Override
 	public int hashCode() {

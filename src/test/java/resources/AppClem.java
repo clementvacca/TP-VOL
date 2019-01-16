@@ -1,25 +1,15 @@
 package resources;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 import tpVol.dao.DaoClient;
 import tpVol.dao.DaoClientFactory;
 import tpVol.dao.DaoLogin;
 import tpVol.dao.DaoLoginFactory;
 import tpVol.dao.DaoPassager;
 import tpVol.dao.DaoPassagerFactory;
-import tpVol.dao.DaoReservation;
-import tpVol.dao.DaoReservationFactory;
-import tpVol.dao.DaoVol;
-import tpVol.dao.DaoVolFactory;
 import tpVol.model.Adresse;
-import tpVol.model.Client;
 import tpVol.model.ClientPhysique;
 import tpVol.model.Login;
 import tpVol.model.Passager;
-import tpVol.model.Reservation;
-import tpVol.model.Vol;
 import tpVol.util.Context;
 
 public class AppClem {
@@ -37,7 +27,15 @@ public class AppClem {
 		DaoClient daoClient=DaoClientFactory.getInstance();
 		
 		ClientPhysique client=new ClientPhysique("Vacca", "0156230451", "0515415", "clem@mail.com", adresse_1);
-		Login login=new Login();
+		Login login=new Login("clemvac", "lool", false);
+		client.setLogin(login);
+		daoLogin.insert(login);
+		login.setAdmin(true);
+		daoLogin.update(login);
+		daoLogin.delete(login);
+		daoClient.insert(client);
+		
+		
 		
 		
 		Context.close();

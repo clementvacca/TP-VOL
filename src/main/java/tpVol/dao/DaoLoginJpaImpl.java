@@ -65,9 +65,12 @@ public class DaoLoginJpaImpl implements DaoLogin {
 	public void delete(Login objet) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
+		Login login=null;
 		try {
 			tx = em.getTransaction();
 			tx.begin();
+			login=em.find(Login.class, objet.getId());//On charge l'ordinateur à supprimer chez l'élève
+			login.getClient().setLogin(null);//on le set à null pour pouvoir le remove
 			em.remove(em.merge(objet));
 			tx.commit();
 		} catch (Exception e) {
