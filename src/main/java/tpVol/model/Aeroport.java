@@ -1,5 +1,7 @@
 package tpVol.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -16,13 +19,20 @@ import javax.persistence.Table;
 public class Aeroport {
 		@Id
 		@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqAeroport")
-		@Column(name = "id_airport", length = 150, nullable = false)
+		@Column(name = "id_airport", length = 150, nullable = true)
 		private Long idAeroport;
 		@Column(name = "name_airport", length = 150, nullable = false)
 		private String nomAeroport;
 		@ManyToOne
 		@JoinColumn(name = "id_city")
 		private Ville ville;
+		@OneToMany(mappedBy="aeroportDepart")
+		private List<Vol> volsDepart;
+		@OneToMany(mappedBy="aeroportArrivee")
+		private List<Vol> volsArrivee;
+		@OneToMany(mappedBy="key.aeroport")
+		private List<Escale> escales;
+		
 		
 		public Aeroport () {
 			
