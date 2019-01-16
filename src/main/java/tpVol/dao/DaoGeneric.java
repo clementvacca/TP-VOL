@@ -2,6 +2,8 @@ package tpVol.dao;
 
 import java.util.List;
 
+import tpVol.model.Passager;
+
 public interface DaoGeneric<T, K> {
 	public List<T> findAll(); // on récupère un type générique
 
@@ -14,4 +16,6 @@ public interface DaoGeneric<T, K> {
 	public void delete(T objet);
 
 	public void deleteByKey(K key);
+
+
 }
