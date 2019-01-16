@@ -15,10 +15,20 @@ public class ClientEi extends Client{
 	private TitrePhysique titrePhysique;
 	
 	public ClientEi() {
-		// TODO Auto-generated constructor stub
+		super();
+	}
+
+	public ClientEi(String nom, String numeroTel, String numeroFax, String email, Adresse adresse) {
+		super(nom, numeroTel, numeroFax, email, adresse);
+	}
+	public ClientEi(String nom, String numeroTel, String numeroFax, String email, Adresse adresse,String prenom, TitrePhysique titre) {
+		super(nom, numeroTel, numeroFax, email, adresse);
+		this.prenom = prenom;
+		this.titrePhysique = titre;
 	}
 
 	public ClientEi(String prenom, TitrePhysique titre) {
+		super();
 		this.prenom = prenom;
 		this.titrePhysique = titre;
 	}

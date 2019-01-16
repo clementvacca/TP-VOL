@@ -12,12 +12,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "client")
-@SequenceGenerator(name = "seqClient",sequenceName = "seq_client", allocationSize = 20, initialValue = 100)
+@SequenceGenerator(name = "seqClient",sequenceName = "seq_client", allocationSize = 1, initialValue = 1)
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="titre",length=1)
 public abstract class Client {
@@ -28,9 +30,9 @@ public abstract class Client {
 	@Column(name = "nom_client")
 	private String nom;
 	@Column(name = "numero_tel")
-	private Integer numeroTel;
+	private String numeroTel;
 	@Column(name = "numero_fax")
-	private Integer numeroFax;
+	private String numeroFax;
 	@Column(name = "email_client")
 	private String email;
 	@Embedded
@@ -39,13 +41,17 @@ public abstract class Client {
 		@AttributeOverride(name = "cp", column = @Column(name = "code_postal", length = 5)),
 		@AttributeOverride(name = "ville", column = @Column(name = "ville", length = 150)) })
 	private Adresse adresse;
+	@OneToOne
+	@JoinColumn(name="login")
+	private Login login;
+	
+	
 	
 	public Client() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Client(Long idClient, String nom, Integer numeroTel, Integer numeroFax, String email, Adresse adresse) {
-		this.idClient = idClient;
+	public Client(String nom, String numeroTel, String numeroFax, String email, Adresse adresse) {
 		this.nom = nom;
 		this.numeroTel = numeroTel;
 		this.numeroFax = numeroFax;
@@ -69,19 +75,19 @@ public abstract class Client {
 		this.nom = nom;
 	}
 
-	public Integer getNumeroTel() {
+	public String getNumeroTel() {
 		return numeroTel;
 	}
 
-	public void setNumeroTel(Integer numeroTel) {
+	public void setNumeroTel(String numeroTel) {
 		this.numeroTel = numeroTel;
 	}
 
-	public Integer getNumeroFax() {
+	public String getNumeroFax() {
 		return numeroFax;
 	}
 
-	public void setNumeroFax(Integer numeroFax) {
+	public void setNumeroFax(String numeroFax) {
 		this.numeroFax = numeroFax;
 	}
 

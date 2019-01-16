@@ -16,13 +16,21 @@ public class ClientPhysique extends Client{
 	
 	
 	public ClientPhysique() {
+		super();
+	}
+
+	public ClientPhysique(String nom, String numeroTel, String numeroFax, String email, Adresse adresse) {
+		super(nom, numeroTel, numeroFax, email, adresse);
 		// TODO Auto-generated constructor stub
 	}
 
-	public ClientPhysique(String prenom, TitrePhysique titrePhysique) {
+	public ClientPhysique(String nom, String numeroTel, String numeroFax, String email, Adresse adresse, String prenom, TitrePhysique titrePhysique) {
+		super(nom, numeroTel, numeroFax, email, adresse);
 		this.prenom = prenom;
 		this.titrePhysique = titrePhysique;
 	}
+
+	
 
 	public String getPrenom() {
 		return prenom;

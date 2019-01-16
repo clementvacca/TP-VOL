@@ -15,10 +15,20 @@ public class ClientMoral extends Client {
 	private TitreMoral titre_moral;
 	
 	public ClientMoral() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
+	public ClientMoral(String nom, String numeroTel, String numeroFax, String email, Adresse adresse) {
+		super(nom, numeroTel, numeroFax, email, adresse);
+		// TODO Auto-generated constructor stub
+	}
+	public ClientMoral(String nom, String numeroTel, String numeroFax, String email, Adresse adresse,String siret, TitreMoral titre) {
+		super(nom, numeroTel, numeroFax, email, adresse);
+		this.siret = siret;
+		this.titre_moral = titre;
+	}
 	public ClientMoral(String siret, TitreMoral titre) {
+		super();
 		this.siret = siret;
 		this.titre_moral = titre;
 	}

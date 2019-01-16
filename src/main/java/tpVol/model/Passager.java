@@ -40,7 +40,6 @@ public class Passager {
 	@OneToMany(mappedBy="passager",fetch=FetchType.LAZY)
 	private Set<Reservation> reservations;
 	
-	
 	@Version
 	private int version;
 	
