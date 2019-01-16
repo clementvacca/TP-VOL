@@ -30,10 +30,8 @@ public class AppClem {
 		Login login=new Login("clemvac", "lool", false);
 		client.setLogin(login);
 		daoLogin.insert(login);
-		login.setAdmin(true);
-		daoLogin.update(login);
-		daoLogin.delete(login);
-		daoClient.insert(client);
+		daoClient.delete(client);
+		
 		
 		
 		

@@ -7,6 +7,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import tpVol.model.Client;
+import tpVol.model.Login;
 import tpVol.util.Context;
 
 public class DaoClientJpaImpl implements DaoClient {
@@ -67,10 +68,15 @@ public class DaoClientJpaImpl implements DaoClient {
 	public void delete(Client objet) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
+		Client client=null;
+		Login login=null;// on créer un login pour manager cet objet
 		try {
 			tx = em.getTransaction();
 			tx.begin();
-			em.remove(em.merge(objet));
+			client =em.merge(objet);
+			login=client.getLogin();//on récupère le login à supprimer via l'objet managé
+			em.remove(client);
+			em.remove(login);//on remove le login et le client
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
