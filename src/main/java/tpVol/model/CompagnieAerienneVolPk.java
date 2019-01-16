@@ -10,10 +10,10 @@ import javax.persistence.ManyToOne;
 public class CompagnieAerienneVolPk implements Serializable{
 	
 	@ManyToOne
-	@JoinColumn(name = "compagnie_aerienne_pk")
+	@JoinColumn(name = "compagnie_aerienne_id")
 	private CompagnieAerienne compagnieAerienneVol;
 	@ManyToOne
-	@JoinColumn(name = "vol_pk")
+	@JoinColumn(name = "vol_id")
 	private Vol vol;
 	
 	public CompagnieAerienneVolPk() {

@@ -1,6 +1,7 @@
 package tpVol.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "vol")
@@ -24,12 +27,18 @@ public class Vol {
 	private Date dateDepart;
 	@Column(name = "date_arrivee", length = 150, nullable = false)
 	private Date dateArrivee;
+	
+	@OneToMany
+	private List<CompagnieAerienneVol> compagnieAerienneVol;
 
 	@OneToOne // Un seul vol possible pour une seule réservation car cela se fait selon un
 				// seul client
 	@JoinColumn(name = "id_reservation")
 	private Reservation reservation; // attribut relié au mappedBy dans l'autre table
 
+	@Version
+	private int version;
+	
 	public Vol() {
 	}
 
@@ -67,6 +76,30 @@ public class Vol {
 
 	public void setReservation(Reservation reservation) {
 		this.reservation = reservation;
+	}
+
+	public List<CompagnieAerienneVol> getCompagnieAerienneVol() {
+		return compagnieAerienneVol;
+	}
+
+	public void setCompagnieAerienneVol(List<CompagnieAerienneVol> compagnieAerienneVol) {
+		this.compagnieAerienneVol = compagnieAerienneVol;
+	}
+
+	public Long getIdVol() {
+		return idVol;
+	}
+
+	public void setIdVol(Long idVol) {
+		this.idVol = idVol;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	@Override
