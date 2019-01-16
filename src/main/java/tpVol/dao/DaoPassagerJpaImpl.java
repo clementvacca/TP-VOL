@@ -22,7 +22,7 @@ public class DaoPassagerJpaImpl implements DaoPassager {
 		return passagers;
 	}
 
-	public Passager findByKey(Integer key) {
+	public Passager findByKey(Long key) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		Passager p = null;
 		p = em.find(Passager.class, key);
@@ -81,7 +81,7 @@ public class DaoPassagerJpaImpl implements DaoPassager {
 		em.close();
 	}
 
-	public void deleteByKey(Integer key) {
+	public void deleteByKey(Long key) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
 		try {
@@ -97,7 +97,7 @@ public class DaoPassagerJpaImpl implements DaoPassager {
 		em.close();
 	}
 
-	public Passager findByKeyWithReservation(Integer key){
+	public Passager findByKeyWithReservation(Long key){
 		Passager adherent=null;
 		EntityManager em=Context.getEntityManagerFactory().createEntityManager();
 		Query query=em.createQuery("select p from Passager p left join fetch p.reservations where p.id=:key");

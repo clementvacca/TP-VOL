@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import tpVol.model.Passager;
 import tpVol.model.Vol;
 import tpVol.util.Context;
 
@@ -21,7 +20,7 @@ public class DaoVolJpaImpl implements DaoVol {
 		return vols;
 	}
 
-	public Vol findByKey(Integer key) {
+	public Vol findByKey(Long key) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		Vol v = null;
 		v = em.find(Vol.class, key);
@@ -80,7 +79,7 @@ public class DaoVolJpaImpl implements DaoVol {
 		
 	}
 
-	public void deleteByKey(Integer key) {
+	public void deleteByKey(Long key) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
 		try {
@@ -95,5 +94,7 @@ public class DaoVolJpaImpl implements DaoVol {
 		}
 		em.close();
 	}
+
+	
 
 }

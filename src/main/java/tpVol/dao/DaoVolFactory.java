@@ -1,9 +1,5 @@
 package tpVol.dao;
 
-import java.util.List;
-
-import tpVol.model.Vol;
-
 public class DaoVolFactory {
 	private static DaoVol singleton = null;
 

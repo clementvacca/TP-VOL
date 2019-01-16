@@ -4,8 +4,8 @@ import java.util.List;
 
 import tpVol.model.Passager;
 
-public interface DaoPassager extends DaoGeneric<Passager, Integer> {
+public interface DaoPassager extends DaoGeneric<Passager, Long> {
 	
-	public Passager findByKeyWithReservation(Integer key);
+	public Passager findByKeyWithReservation(Long key);
 	public List<Passager> findAllPassagersWithReservation();
 }
