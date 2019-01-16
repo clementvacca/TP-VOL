@@ -4,6 +4,7 @@ import tpVol.dao.DaoPassager;
 import tpVol.dao.DaoPassagerFactory;
 import tpVol.model.Adresse;
 import tpVol.model.Passager;
+import tpVol.model.Reservation;
 import tpVol.util.Context;
 
 public class AppTest {
@@ -14,8 +15,7 @@ public class AppTest {
 		Passager clement=new Passager("Vacca","Clement",adresse_1);
 		
 		daoPassager.insert(clement);
-		clement.setNom("Schtroumpf");
-		daoPassager.update(clement);
+		
 		
 		Context.close();
 	}

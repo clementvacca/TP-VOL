@@ -7,30 +7,29 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import tpVol.model.Passager;
+import tpVol.model.Vol;
 import tpVol.util.Context;
 
+public class DaoVolJpaImpl implements DaoVol {
 
-public class DaoPassagerJpaImpl implements DaoPassager {
-
-	@SuppressWarnings("unchecked") 
-	public List<Passager> findAll() {
-		List<Passager> passagers = null;
+	public List<Vol> findAll() {
+		List<Vol> vols = null;
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Query query = em.createQuery("select p from Passager p"); //"from Personne p" fonctionne aussi
-		passagers=query.getResultList();
+		Query query = em.createQuery("select v from Vol v"); //"from Personne p" fonctionne aussi
+		vols=query.getResultList();
 		em.close();
-		return passagers;
+		return vols;
 	}
 
-	public Passager findByKey(Integer key) {
+	public Vol findByKey(Integer key) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
-		Passager p = null;
-		p = em.find(Passager.class, key);
+		Vol v = null;
+		v = em.find(Vol.class, key);
 		em.close();
-		return p;
+		return v;
 	}
 
-	public void insert(Passager obj) {
+	public void insert(Vol obj) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
 		try {
@@ -44,17 +43,16 @@ public class DaoPassagerJpaImpl implements DaoPassager {
 			}
 		}
 		em.close();
-
 	}
 
-	public Passager update(Passager obj) {
+	public Vol update(Vol obj) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
-		Passager p=null;
+		Vol v=null;
 		try {
 			tx = em.getTransaction();
 			tx.begin();
-			p=em.merge(obj);
+			v=em.merge(obj);
 			tx.commit();
 		} catch (Exception e) {
 			if (tx != null && tx.isActive()) {
@@ -62,10 +60,10 @@ public class DaoPassagerJpaImpl implements DaoPassager {
 			}
 		}
 		em.close();
-		return p;
+		return v;
 	}
 
-	public void delete(Passager objet) {
+	public void delete(Vol objet) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
 		try {
@@ -79,6 +77,7 @@ public class DaoPassagerJpaImpl implements DaoPassager {
 			}
 		}
 		em.close();
+		
 	}
 
 	public void deleteByKey(Integer key) {
@@ -97,22 +96,4 @@ public class DaoPassagerJpaImpl implements DaoPassager {
 		em.close();
 	}
 
-	public Passager findByKeyWithReservation(Integer key){
-		Passager adherent=null;
-		EntityManager em=Context.getEntityManagerFactory().createEntityManager();
-		Query query=em.createQuery("select p from Passager p left join fetch p.reservations where p.id=:key");
-		query.setParameter("key", key);
-		adherent=(Passager) query.getSingleResult();
-		em.close();
-		return adherent;
-	}
-
-	public List<Passager> findAllPassagersWithReservation() {
-		List<Passager> reservations=null;
-		EntityManager em=Context.getEntityManagerFactory().createEntityManager();
-		Query query=em.createQuery("select p from Passager p left join fetch p.reservations");
-		reservations=query.getResultList();
-		em.close();
-		return reservations;
-	}
 }
