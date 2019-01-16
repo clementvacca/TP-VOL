@@ -7,9 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "vol")
@@ -18,7 +19,7 @@ public class Vol {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqVol")
 	@Column(name = "no_vol", length = 150, nullable = true)
-	private Long id;
+	private Long idVol;
 	@Column(name = "date_depart", length = 150, nullable = false)
 	private Date dateDepart;
 	@Column(name = "date_arrivee", length = 150, nullable = false)
@@ -27,13 +28,16 @@ public class Vol {
 	private Date heureDepart;
 	@Column(name = "heure_arrivee", length = 150, nullable = false)
 	private Date heureArrivee;
+
+	@OneToOne // Un seul vol possible pour une seule réservation car cela se fait selon un seul client 
+	@JoinColumn(name="id_reservation")
+	private Reservation reservation;
 	
 	public Vol() {
 	}
 
-	public Vol(Long id, Date dateDepart, Date dateArrivee, Date heureDepart, Date heureArrivee) {
+	public Vol(Date dateDepart, Date dateArrivee, Date heureDepart, Date heureArrivee) {
 		super();
-		this.id = id;
 		this.dateDepart = dateDepart;
 		this.dateArrivee = dateArrivee;
 		this.heureDepart = heureDepart;
@@ -41,7 +45,7 @@ public class Vol {
 	}
 
 	public Long getId() {
-		return id;
+		return idVol;
 	}
 
 	public Date getDateDepart() {
@@ -80,7 +84,7 @@ public class Vol {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((idVol == null) ? 0 : idVol.hashCode());
 		return result;
 	}
 
@@ -93,12 +97,12 @@ public class Vol {
 		if (getClass() != obj.getClass())
 			return false;
 		Vol other = (Vol) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (idVol == null) {
+			if (other.idVol != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!idVol.equals(other.idVol))
 			return false;
 		return true;
 	}
-	
+
 }
