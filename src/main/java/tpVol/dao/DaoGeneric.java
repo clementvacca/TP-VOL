@@ -3,6 +3,7 @@ package tpVol.dao;
 import java.util.List;
 
 public interface DaoGeneric<T, K> {
+	
 	public List<T> findAll(); // on récupère un type générique
 
 	public T findByKey(K key);
