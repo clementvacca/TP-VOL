@@ -22,7 +22,7 @@ public class DaoAeroportJpaImpl implements DaoAeroport{
 		return aeroports;
 	}
 
-	public Aeroport findByKey(Integer key) {
+	public Aeroport findByKey(Long key) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		Aeroport a = null;
 		a = em.find(Aeroport.class, key);
@@ -82,7 +82,7 @@ public class DaoAeroportJpaImpl implements DaoAeroport{
 
 	}
 
-	public void deleteByKey(Integer key) {
+	public void deleteByKey(Long key) {
 		EntityManager em = Context.getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = null;
 		try {
