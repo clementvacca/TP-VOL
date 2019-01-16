@@ -25,17 +25,20 @@ public class Vol {
 	@Column(name = "date_arrivee", length = 150, nullable = false)
 	private Date dateArrivee;
 
-	@OneToOne // Un seul vol possible pour une seule réservation car cela se fait selon un seul client 
-	@JoinColumn(name="id_reservation")
-	private Reservation reservation;
-	
+	@OneToOne // Un seul vol possible pour une seule réservation car cela se fait selon un
+				// seul client
+	@JoinColumn(name = "id_reservation")
+	private Reservation reservation; // attribut relié au mappedBy dans l'autre table
+
 	public Vol() {
 	}
 
-	public Vol(Date dateDepart, Date dateArrivee) {
+	public Vol(Date dateDepart, Date dateArrivee, Reservation reservation) {
+		// reservation = attribut pour la liaison entre vol et reservation
 		super();
 		this.dateDepart = dateDepart;
 		this.dateArrivee = dateArrivee;
+		this.reservation = reservation;
 	}
 
 	public Long getId() {
@@ -56,6 +59,14 @@ public class Vol {
 
 	public void setDateArrivee(Date dateArrivee) {
 		this.dateArrivee = dateArrivee;
+	}
+
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
 	}
 
 	@Override

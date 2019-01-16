@@ -1,6 +1,7 @@
 package tpVol.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -33,9 +35,8 @@ public class Reservation {
 	@JoinColumn(name="id_passager")
 	private Passager passager;
 	
-	@OneToOne // Une seule réservation pour un seul vol car cela se fait selon un seul client (qui ne réserve qu'une place)
-	@JoinColumn(name="no_vol")
-	private Vol vol;
+	@OneToMany(mappedBy="reservation") // Une seule réservation pour plusieurs vol
+	private List<Vol> vol;
 	
 	public Reservation() {
 	}
