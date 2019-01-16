@@ -58,6 +58,26 @@ public class Aeroport {
 		public void setVille(Ville ville) {
 			this.ville = ville;
 		}
+		
+		
+		public List<Vol> getVolsDepart() {
+			return volsDepart;
+		}
+		public void setVolsDepart(List<Vol> volsDepart) {
+			this.volsDepart = volsDepart;
+		}
+		public List<Vol> getVolsArrivee() {
+			return volsArrivee;
+		}
+		public void setVolsArrivee(List<Vol> volsArrivee) {
+			this.volsArrivee = volsArrivee;
+		}
+		public List<Escale> getEscales() {
+			return escales;
+		}
+		public void setEscales(List<Escale> escales) {
+			this.escales = escales;
+		}
 		@Override
 		public int hashCode() {
 			final int prime = 31;

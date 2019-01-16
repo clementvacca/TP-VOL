@@ -2,9 +2,13 @@ package resources;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import tpVol.dao.DaoAeroport;
 import tpVol.dao.DaoAeroportFactory;
+import tpVol.dao.DaoEscale;
+import tpVol.dao.DaoEscaleFactory;
 import tpVol.dao.DaoReservation;
 import tpVol.dao.DaoReservationFactory;
 import tpVol.dao.DaoVille;
@@ -12,6 +16,8 @@ import tpVol.dao.DaoVilleFactory;
 import tpVol.dao.DaoVol;
 import tpVol.dao.DaoVolFactory;
 import tpVol.model.Aeroport;
+import tpVol.model.Escale;
+import tpVol.model.EscalePk;
 import tpVol.model.Reservation;
 import tpVol.model.Ville;
 import tpVol.model.Vol;
@@ -80,10 +86,16 @@ public class AppNico {
 		daoAeroport.insert(gal);
 		daoAeroport.insert(mari);
 		daoAeroport.insert(orl);
+		DaoEscale daoEscale=DaoEscaleFactory.getInstance();
+		List<Escale> escales=new ArrayList<Escale>();
+		Escale escale_1=new Escale();
+		EscalePk key=new EscalePk(vol1,orl);
+		escale_1.setKey(key);
+		daoEscale.insert(escale_1);
+		escales.add(escale_1);
+		vol1.setEscales(escales);
 		
-		
-	
-		
+		daoVol.delete(vol1);
 		
 		
 		Context.close();
