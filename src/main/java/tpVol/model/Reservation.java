@@ -19,13 +19,14 @@ import javax.persistence.Table;
 @Table(name="reservation")
 @SequenceGenerator(name = "seqReservation", sequenceName = "seq_reservation", allocationSize = 1, initialValue = 1)
 public class Reservation {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqReservation")
-	@Column(name="id_reservation")
+	@Column(name="id_reservation", length=20, nullable=true)
 	private Long idReservation;
-	@Column(name="date_reservation")
+	@Column(name="date_reservation", length=20, nullable=true)
 	private Date dateReservation;
-	@Column(name="numero_reservation")
+	@Column(name="numero_reservation", length=20, nullable=true)
 	private Integer numeroReservation;
 	
 	@ManyToOne // Plusieurs réservations possibles pour un seul passager 
@@ -62,6 +63,31 @@ public class Reservation {
 
 	public void setNumeroReservation(Integer numeroReservation) {
 		this.numeroReservation = numeroReservation;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idReservation == null) ? 0 : idReservation.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reservation other = (Reservation) obj;
+		if (idReservation == null) {
+			if (other.idReservation != null)
+				return false;
+		} else if (!idReservation.equals(other.idReservation))
+			return false;
+		return true;
 	}
 	
 }

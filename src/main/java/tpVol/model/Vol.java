@@ -24,10 +24,6 @@ public class Vol {
 	private Date dateDepart;
 	@Column(name = "date_arrivee", length = 150, nullable = false)
 	private Date dateArrivee;
-	@Column(name = "heure_depart", length = 150, nullable = false)
-	private Date heureDepart;
-	@Column(name = "heure_arrivee", length = 150, nullable = false)
-	private Date heureArrivee;
 
 	@OneToOne // Un seul vol possible pour une seule réservation car cela se fait selon un seul client 
 	@JoinColumn(name="id_reservation")
@@ -36,12 +32,10 @@ public class Vol {
 	public Vol() {
 	}
 
-	public Vol(Date dateDepart, Date dateArrivee, Date heureDepart, Date heureArrivee) {
+	public Vol(Date dateDepart, Date dateArrivee) {
 		super();
 		this.dateDepart = dateDepart;
 		this.dateArrivee = dateArrivee;
-		this.heureDepart = heureDepart;
-		this.heureArrivee = heureArrivee;
 	}
 
 	public Long getId() {
@@ -62,22 +56,6 @@ public class Vol {
 
 	public void setDateArrivee(Date dateArrivee) {
 		this.dateArrivee = dateArrivee;
-	}
-
-	public Date getHeureDepart() {
-		return heureDepart;
-	}
-
-	public void setHeureDepart(Date heureDepart) {
-		this.heureDepart = heureDepart;
-	}
-
-	public Date getHeureArrivee() {
-		return heureArrivee;
-	}
-
-	public void setHeureArrivee(Date heureArrivee) {
-		this.heureArrivee = heureArrivee;
 	}
 
 	@Override
