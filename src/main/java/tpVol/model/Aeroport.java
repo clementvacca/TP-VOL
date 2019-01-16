@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -20,7 +21,7 @@ public class Aeroport {
 		@Column(name = "name_airport", length = 150, nullable = false)
 		private String nomAeroport;
 		@ManyToOne
-		@Column(name = "id_city", length = 150, nullable = true)
+		@JoinColumn(name = "id_city")
 		private Ville ville;
 		
 		public Aeroport () {
