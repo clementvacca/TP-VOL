@@ -4,11 +4,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -26,9 +28,13 @@ public class Reservation {
 	@Column(name="numero_reservation")
 	private Integer numeroReservation;
 	
-	@ManyToOne
+	@ManyToOne // Plusieurs réservations possibles pour un seul passager 
 	@JoinColumn(name="id_passager")
 	private Passager passager;
+	
+	@OneToOne // Une seule réservation pour un seul vol car cela se fait selon un seul client (qui ne réserve qu'une place)
+	@JoinColumn(name="no_vol")
+	private Vol vol;
 	
 	public Reservation() {
 	}
