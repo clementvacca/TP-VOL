@@ -25,7 +25,7 @@ public class CompagnieAerienne {
 	@Column(name="nom_compagnie_aerienne")
 	private String nomCompagnieAerienne;
 	
-	@OneToMany
+	@OneToMany(mappedBy="key.compagnieAerienneVol")
 	private List<CompagnieAerienneVol> compagnieAerienneVol;
 	
 	@Version

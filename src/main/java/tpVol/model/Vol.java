@@ -28,14 +28,23 @@ public class Vol {
 	@Column(name = "date_arrivee", length = 150, nullable = false)
 	private Date dateArrivee;
 	
-	@OneToMany
+	@OneToMany(mappedBy="key.vol")
 	private List<CompagnieAerienneVol> compagnieAerienneVol;
 
 	@OneToOne // Un seul vol possible pour une seule réservation car cela se fait selon un
 				// seul client
 	@JoinColumn(name = "id_reservation")
 	private Reservation reservation; // attribut relié au mappedBy dans l'autre table
+	
+	@OneToOne
+	@JoinColumn(name="id_airport_departure")
+	Aeroport aeroportDepart;
+	@OneToOne
+	@JoinColumn(name="id_airport_arrival")
+	Aeroport aeroportArrivee;
 
+	@OneToMany(mappedBy="key.vol")
+	List<Escale> escales;// peut etre null
 	@Version
 	private int version;
 	
@@ -100,6 +109,30 @@ public class Vol {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+
+	public Aeroport getAeroportDepart() {
+		return aeroportDepart;
+	}
+
+	public void setAeroportDepart(Aeroport aeroportDepart) {
+		this.aeroportDepart = aeroportDepart;
+	}
+
+	public Aeroport getAeroportArrivee() {
+		return aeroportArrivee;
+	}
+
+	public void setAeroportArrivee(Aeroport aeroportArrivee) {
+		this.aeroportArrivee = aeroportArrivee;
+	}
+
+	public List<Escale> getEscales() {
+		return escales;
+	}
+
+	public void setEscales(List<Escale> escales) {
+		this.escales = escales;
 	}
 
 	@Override
