@@ -1,6 +1,8 @@
 package tpVol.model;
 
 
+import java.util.List;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -13,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -45,6 +48,8 @@ public abstract class Client {
 	@JoinColumn(name="login")
 	private Login login;
 	
+	@OneToMany
+	private List<Reservation> reservations;
 	
 	
 	public Client() {
@@ -57,6 +62,15 @@ public abstract class Client {
 		this.numeroFax = numeroFax;
 		this.email = email;
 		this.adresse = adresse;
+	}
+
+	
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 
 	public Long getIdClient() {
